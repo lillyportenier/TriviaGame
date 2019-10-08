@@ -1,0 +1,34 @@
+body {
+    background-image: url("http://www.pixelstalk.net/wp-content/uploads/2016/05/Math-Wallpaper.jpg");
+}
+#background-container {
+    padding: 25px;
+    width: 80%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    height: 70%;
+    background-color: rgb(252, 241, 240);
+    border: black 2px solid;
+    text-align: center;
+}
+h1 {
+    font-size: 40px;
+    color: darkred;
+}
+button {
+    width: 450px;
+    height: 50px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    background-color: tomato;
+    border: 1px darkred solid;
+    border-radius: 4px;
+    font-size: 24px;
+}
+button:hover {
+    background-color: lightsalmon; 
+}
