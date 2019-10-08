@@ -41,12 +41,52 @@ var triva = {
         Q8: "Adverb",
         Q9: "September",
         Q10: "South America",
-    },
+    }};
 
+    var start = $("#start");
+    var button1 = $("#button1");
+    var button2 = $("#button2");
+    var button3 = $("#button3");
+    var button4 = $("#button4");
+
+
+function onLoad(){
+    start.show();
+    button1.hide();
+    button2.hide();
+    button3.hide();
+    button4.hide();
+    $("#remaining-time").hide();
 }
+onLoad();
+
 // start game when user hits start button 
 
+start.click (function() {
+    start.hide();
+    $("#remaining-time").show();
+    $("#instructions").hide();
+    button1.show();
+    button2.show();
+    button3.show();
+    button4.show();
+
+
+});
+
+// function questions() {
+//     if (i = 0 ; i > trivia.questions.length; i++){
+//         $("#questions").append(trivia.questions[i]);
+//     }
+    
+// };
+// var timer = setTiemout(function(){
+//     // show correct answer
+// }, 2000);
+    
 // start the timer, hide the start page, show first question 
+
+
 // decrement the timer by 1 stop at 0, update on screen time change 
 // stop timer and check answer
 // hide qusetion and display if right or wrong answer
