@@ -1,53 +1,49 @@
-var triva = {
-    correct: 0, 
-    incorrect: 0,
-    unanswered: 0,
-    currentSet: 0,
-    timer: 20,
-    timerOn: false,
-    timerId: " ",
 
-    questions: {
-        Q1: "The part of an atom with a negative electrical charge is the?",
-        Q2: "What is the fastest bird on foot?",
-        Q4: "A heptagon is a shape with how many sides?",
-        Q5: "How long is one regular term of a U.S. Representative?",
-        Q6: "What is the largest South American country by area?",
-        Q7: "Which of the floowing states is NOT part of the Four Corners?",
-        Q8: "'Carfeully' is an example of what type of word?",
-        Q9: "In the Northern Hemisphere, what month is the autumnal equnox?",
-        Q10: "Inca civilizations were concentrated on what continent?",
-    },
-    options: {
-       Q1: ["Nutron", "Electron", "Proton", "Atomic Nucleus"],
-       Q2: ["Ostrich", "Sparrow", "Eagle", "Dragon"],
-       Q3: ["Venus", "Mars", "Earth", "Mercury"],
-       Q4: ["4", "7", "8", "20"],
-       Q5: ["3", "1", "2", "4"],
-       Q6: ["Argentina", "Brazil", "Chile", "Mexico"],
-       Q7: ["New Mexico", "Utah", "Colorado", "Nevada"],
-       Q8: ["Advjective", "Noun", "Verb", "Adverb"],
-       Q9: ["August", "September", "October", "November"],
-       Q10: ["South America", "Africa", "North America", "Europe"],
-    },
-    answers: {
-        Q1: "Electron",
-        Q2: "Ostrich",
-        Q3: "Mercury",
-        Q4: "7",
-        Q5: "2",
-        Q6: "Brazil",
-        Q7: "Nevada",
-        Q8: "Adverb",
-        Q9: "September",
-        Q10: "South America",
-    }};
+  
 
-    var start = $("#start");
-    var button1 = $("#button1");
-    var button2 = $("#button2");
-    var button3 = $("#button3");
-    var button4 = $("#button4");
+var questions= ["The part of an atom with a negative electrical charge is the?", "What is the fastest bird on foot?","A heptagon is a shape with how many sides?", "How long is one regular term of a U.S. Representative?", "What is the largest South American country by area?","Which of the floowing states is NOT part of the Four Corners?","'Carfeully' is an example of what type of word?", "In the Northern Hemisphere, what month is the autumnal equnox?", "Inca civilizations were concentrated on what continent?"];
+
+ var options = {
+    Q1: ["Nutron", "Electron", "Proton", "Atomic Nucleus"],
+    Q2: ["Ostrich", "Sparrow", "Eagle", "Dragon"],
+    Q3: ["Venus", "Mars", "Earth", "Mercury"],
+    Q4: ["4", "7", "8", "20"],
+    Q5: ["3", "1", "2", "4"],
+    Q6: ["Argentina", "Brazil", "Chile", "Mexico"],
+    Q7: ["New Mexico", "Utah", "Colorado", "Nevada"],
+    Q8: ["Advjective", "Noun", "Verb", "Adverb"],
+    Q9: ["August", "September", "October", "November"],
+    Q10: ["South America", "Africa", "North America", "Europe"],
+    };
+var answers = {
+    Q1: "Electron",
+    Q2: "Ostrich",
+    Q3: "Mercury",
+    Q4: "7",
+    Q5: "2",
+    Q6: "Brazil",
+    Q7: "Nevada",
+    Q8: "Adverb",
+    Q9: "September",
+    Q10: "South America",
+};
+
+
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
+var currentSetAnswer = " ";
+var timer = 20;
+var timerOn = false;
+var timerId;
+
+var start = $("#start");
+var button1 = $("#button1");
+var button2 = $("#button2");
+var button3 = $("#button3");
+var button4 = $("#button4");
+
+
 
 
 function onLoad(){
@@ -60,6 +56,20 @@ function onLoad(){
 }
 onLoad();
 
+// take the button text of said button and assign it to a variable 
+button1.click(function(){
+    currentSetAnswer = button1.text();
+})
+button2.click(function() {
+    currentSetAnswer = button2.text();
+});
+button3.click(function() {
+    currentSetAnswer = button3.text();
+});
+button4.click(function() {
+    currentSetAnswer = button4.text();
+});
+
 // start game when user hits start button 
 
 start.click (function() {
@@ -70,20 +80,38 @@ start.click (function() {
     button2.show();
     button3.show();
     button4.show();
-
-
+    question1();
+    // setTimeout();
 });
 
-// function questions() {
-//     if (i = 0 ; i > trivia.questions.length; i++){
-//         $("#questions").append(trivia.questions[i]);
-//     }
-    
-// };
+function question1() {
+    var x = questions[0]
+    $('#questions').text(x)
+    button1.text(options.Q1[0]);
+    button2.text(options.Q1[1]);
+    button3.text(options.Q1[2]);
+    button4.text(options.Q1[3]);
+
+};
+
 // var timer = setTiemout(function(){
-//     // show correct answer
-// }, 2000);
-    
+//     // $("#timer").text(timerId);
+//     if (timer <= 0){
+//         question1();
+//     }
+//     else {
+//         question2();
+//     }
+// }, 15000);
+
+function question2() {
+    var x = questions[1]
+    $('#questions').text(x)
+    button1.text(options.Q2[0]);
+    button2.text(options.Q2[1]);
+    button3.text(options.Q2[2]);
+    button4.text(options.Q2[3]);
+};
 // start the timer, hide the start page, show first question 
 
 
