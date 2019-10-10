@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    $("#remaining-time").hide();
+
 
 
 var count = 20;
@@ -48,13 +51,16 @@ var QS = [{
     answer: 0
 }
 ] 
+
 $("#start").click(function() {
     $(this).hide();
     $('#result').hide();
     $("#instructions").hide();
+    $("#remaining-time").show();
     questions();
 });
 function questions() {
+    
     if (QS[current]) {
         $("#timer").html(count + " secs");
         $("#questions").html(QS[current].question);
@@ -105,110 +111,8 @@ function reset() {
     $("#Incorrect").html("Incorrect: " + incorrect);
 
 };
+});
 
-
-
-// var correct = 0;
-// var incorrect = 0;
-// var unanswered = 0;
-// var currentSetAnswer = " ";
-// var timer = 20;
-// var timerOn = false;
-// var timerId;
-
-// var start = $("#start");
-// var button1 = $("#button1");
-// var button2 = $("#button2");
-// var button3 = $("#button3");
-// var button4 = $("#button4");
-
-
-
-
-// function onLoad(){
-//     start.show();
-//     button1.hide();
-//     button2.hide();
-//     button3.hide();
-//     button4.hide();
-//     $("#remaining-time").hide();
-// }
-// onLoad();
-
-// // take the button text of said button and assign it to a variable 
-// button1.click(function(){
-//     currentSetAnswer = button1.text();
-// })
-// button2.click(function() {
-//     currentSetAnswer = button2.text();
-// });
-// button3.click(function() {
-//     currentSetAnswer = button3.text();
-// });
-// button4.click(function() {
-//     currentSetAnswer = button4.text();
-// });
-
-// // start game when user hits start button 
-
-// start.click (function() {
-//     start.hide();
-//     $("#remaining-time").show();
-//     $("#instructions").hide();
-//     button1.show();
-//     button2.show();
-//     button3.show();
-//     button4.show();
-//     question1();
-//     // setTimeout();
-// });
-
-// function question1() {
-//     var x = questions[0];
-//     var answer = 
-//     $('#questions').text(x);
-//     button1.text(options.Q1[0]);
-//     button2.text(options.Q1[1]);
-//     button3.text(options.Q1[2]);
-//     button4.text(options.Q1[3]);
-//     if (currentSetAnswer === answers.Q1) {
-//         correctAnswer();
-//     }
-//     else {
-//         incorrectAnswer();
-//     }
-// };
-
-// function correctAnswer() {
-//     $("#buttons-div").hide();
-//     $("#results").append("<p> Your answer: </p>" + currentSetAnswer);
-//     ("#results").append("<p> Correct answer: </p>" + currentSetAnswer);
-// };
-// function incorrectAnswer() {
-//     $("#buttons-div").hide();
-//     $("#results").append("<p> Your answer: </p>" + currentSetAnswer);
-//     $("#results").append("<p> Your answer: </p>" + currentSetAnswer);
-
-// }
-
-// // var timer = setTiemout(function(){
-// //     // $("#timer").text(timerId);
-// //     if (timer <= 0){
-// //         question1();
-// //     }
-// //     else {
-// //         question2();
-// //     }
-// // }, 15000);
-
-// function question2() {
-//     var x = questions[1]
-//     $('#questions').text(x)
-//     button1.text(options.Q2[0]);
-//     button2.text(options.Q2[1]);
-//     button3.text(options.Q2[2]);
-//     button4.text(options.Q2[3]);
-// };
 // start the timer, hide the start page, show first question 
 
 
