@@ -1,8 +1,6 @@
 $(document).ready(function(){
     $("#remaining-time").hide();
 
-
-
     var count = 10;
     var current = 0;
     var correct = 0;
@@ -12,8 +10,7 @@ $(document).ready(function(){
     var intervalTimer;
     var button;
     var optionsArr;
-
-
+    var correctAnswer;
 
     var QS = [{
         question: "The part of an atom with a negative electrical charge is the?",
@@ -66,7 +63,7 @@ $(document).ready(function(){
     });
     function questions() {
         
-        setInterval(timer, 1000);
+        intervalTimer = setInterval(timer, 1000);
 
         $("#questions").html(QS[current].question);
         optionsArr = QS[current].options;
@@ -75,39 +72,46 @@ $(document).ready(function(){
             button = $("<button>");
             button.text(optionsArr[i]);
             button.attr("data-id", i);
+            button.addClass("answer-buttons");
             $("#buttons-div").append(button);
         };
-        // $("#Unanswered").html("Unanswered: " + unanswered);
-        // $("#Correct").html("Correct: " + correct);
-        // $("#Incorrect").html("Incorrect: " + incorrect);
-
+        $(".answer-buttons").on("click", function(){
+        
+            userAnswer = $(this).data("id");
+            correctAnswer = QS[current].answer;
+    
+            if (userAnswer === correctAnswer) {
+                // $("#Correct").text("Correct!!");
+                handleCorrectAnswer();
+            }
+            else {
+                // $("#Incorrect").text("Wrong answer!");
+                handleWrongAnswer();
+            }
+    
+        });
+        $("#Unanswered").html("Unanswered: " + unanswered);
+        $("#Correct").html("Correct: " + correct);
+        $("#Incorrect").html("Incorrect: " + incorrect);
+        console.log(unanswered);
     };
     
-
     function timer() {
         count--;
         $("#timer").html(count + " seconds");
-
         if (count <= 0) {
             unanswered++;
             nextQuestion();
-        } 
-        else if (userChoice === correctAnswer) {
-            $("#buttons-div").hide();
-            correctAnswer();
-        }
-        else {
-            $("#buttons-div").hide();
-            wrongAnswer();
-        }
+        };
+        
     };
 
-    function correctAnswer() {
+    function handleCorrectAnswer() {
         correct++;
-        nextQuesion();
+        nextQuestion();
     };
 
-    function wrongAnswer() {
+    function handleWrongAnswer() {
         // $("#buttons-div").hide();
         incorrect++;
         nextQuestion();
@@ -115,57 +119,34 @@ $(document).ready(function(){
 
     function nextQuestion() {
         current++;
+        clearTimeout(intervalTimer);
+
+        if (current > 9) {
+            return end();
+        };
         count = 10;
+        $("#buttons-div").empty();
         questions();
 
-        // setTimeout(function() {
-        //     // reset();
-        //     questions();
-        // },1000)
-
     };
-    // reset fix needed
-    // function reset() {
-    //     // $('div[id]').each(function(item) {
-    //     //     $(this).html('');
-    //     // });
-    //     $("#Unanswered").html("Unanswered: " + unanswered);
-    //     $("#Correct").html("Correct: " + correct);
-    //     $("#Incorrect").html("Incorrect: " + incorrect);
+    function end() {
+        restartButton = $("<button>");
+        $("#buttons-div").append(restartButton);
+        restartButton.text("Try again?");
+        $(".answer-buttons").hide();
+        $("#remaining-time").hide();
 
-    // };
-    // function answer() {
-        
 
-    // };
-
-    $("#buttons-div").on("click", "button", function(){
-        
-        userChoice = $(this).data("id");
-        index = QS[current].answer;
-        correct = QS[current].options[index];
-
-    //     if (userChoice === index) {
-    //         $("#resluts-div").text("Wrong answer!");
-    //         // answer(false);
-    //     }
-    //     else {
-    //         $("#resluts-div").text("Correct!!");
-    //         // answer(true);
-    //     }
-    //     nextQuestion();
-        console.log(userChoice);
-    
-    // // answer function work needed
-
-    });
-
+        $("#questions").hide();
+        restartButton.on("click", function(){
+            $(this).hide();
+            $('#results').show();
+            $("#remaining-time").show();
+            current = 0;
+            unanswered = 0;
+            correct = 0;
+            incorrect = 0;
+            questions();
+        });
+    };
 });
-
-// start the timer, hide the start page, show first question 
-
-
-// decrement the timer by 1 stop at 0, update on screen time change 
-// stop timer and check answer
-// hide qusetion and display if right or wrong answer
-//  
